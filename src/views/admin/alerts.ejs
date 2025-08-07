@@ -1,0 +1,11 @@
+<%- include('../partials/header') %>
+
+<form action="/admin/alerts" method="POST">
+  <input type="text" name="message" placeholder="Enter message" required>
+  <input type="color" name="background" value="#ffffff">
+  <input type="color" name="color" value="#000000">
+  <button type="submit">Create Alert</button>
+</form>
+
+
+<%- include('../partials/footer') %>

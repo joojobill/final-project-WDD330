@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+
+<h1>Trending Movies</h1>
+<div class="movie-grid">
+  <% movies.forEach(movie => { %>
+    <div class="movie-card">
+      <img src="https://image.tmdb.org/t/p/w300<%= movie.poster_path %>">
+      <h3><%= movie.title %></h3>
+      <a href="/movies/<%= movie.id %>/recommendations">Get Recommendations</a>
+    </div>
+  <% }) %>
+</div>
+
+<%- include('../partials/footer') %>

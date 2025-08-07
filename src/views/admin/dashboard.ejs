@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+
+<h2>Admin Dashboard</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>Background</th>
+      <th>Color</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% alerts.forEach(alert => { %>
+      <tr>
+        <td><%= alert.message %></td>
+        <td><%= alert.background %></td>
+        <td><%= alert.color %></td>
+        <td>
+          <form action="/admin/alerts/<%= alert._id %>/delete" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h3>Add New Alert</h3>
+<form action="/admin/alerts" method="POST">
+  <input type="text" name="message" placeholder="Message" required>
+  <input type="text" name="background" placeholder="Background" required>
+  <input type="text" name="color" placeholder="Color" required>
+  <button type="submit">Add Alert</button>
+</form>
+
+<%- include('../partials/footer') %>
