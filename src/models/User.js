@@ -15,4 +15,10 @@ userSchema.pre('save', async function(next) {
   next();
 });
 
+userSchema.virtual('watchlist', {
+  ref: 'Watchlist',
+  localField: '_id',
+  foreignField: 'user'
+});
+
 module.exports = mongoose.model('User', userSchema);

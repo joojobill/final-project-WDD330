@@ -196,3 +196,21 @@ td {
   text-decoration: none;
   margin-top: 0.5rem;
 }
+
+.movie-card {
+  position: relative; /* For button positioning */
+  padding-bottom: 2.5rem; /* Space for button */
+}
+
+.watchlist-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
