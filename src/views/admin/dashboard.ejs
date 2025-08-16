@@ -35,4 +35,8 @@
   <button type="submit">Add Alert</button>
 </form>
 
+<% if (typeof error !== 'undefined') { %>
+  <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
 <%- include('../partials/footer') %>

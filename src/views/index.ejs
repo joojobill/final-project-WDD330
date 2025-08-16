@@ -11,7 +11,24 @@
 
   <main>
     <section class="alert-list">
-      
+      <h1>Alerts</h1>
+      <% if (alerts.length > 0) { %>
+        <ul>
+          <% alerts.forEach(alert => { %>
+            <li>
+              <strong><%= alert.title %></strong> - <%= alert.message %>
+              <span class="alert-date"><%= alert.createdAt.toLocaleString() %></span>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>No alerts found.</p>
+      <% } %>
+      <form action="/alerts" method="POST">
+        <input type="text" name="title" placeholder="Alert Title" required>
+        <textarea name="message" placeholder="Alert Message" required></textarea>
+        <button type="submit">Create Alert</button>
+      </form>
     </section>
   </main>
 

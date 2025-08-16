@@ -4,21 +4,25 @@
 <div class="movie-grid">
   <% movies.forEach(movie => { %>
     <div class="movie-card">
-      <img src="https://image.tmdb.org/t/p/w300<%= movie.poster_path %>" 
-           alt="<%= movie.title %> poster">
+      <img
+        src="https://image.tmdb.org/t/p/w300<%= movie.poster_path %>"
+        alt="<%= movie.title %> poster"
+      />
       <h3><%= movie.title %></h3>
       <p>Rating: <%= movie.vote_average %>/10</p>
-      
+
       <!-- Watchlist Button (only shows when logged in) -->
       <% if (locals.user) { %>
-        <button class="watchlist-btn" 
-                data-movie-id="<%= movie.id %>"
-                data-title="<%= movie.title %>"
-                data-poster="<%= movie.poster_path %>">
+        <button
+          class="watchlist-btn"
+          data-movie-id="<%= movie.id %>"
+          data-title="<%= movie.title %>"
+          data-poster="<%= movie.poster_path %>"
+        >
           ♥ Add to Watchlist
         </button>
       <% } %>
-      
+
       <a href="/movies/<%= movie.id %>/recommendations" class="btn-recommend">
         Get Recommendations
       </a>

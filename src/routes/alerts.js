@@ -3,8 +3,8 @@ const express = require('express');
 const Alert = require('../models/database'); // Adjust the path as necessary
 const router = express.Router();
 
-// Get all alerts (API endpoint)
-router.get('/api/alerts', async (req, res) => {
+// Get all alerts
+router.get('/', async (req, res) => {
   try {
     const alerts = await Alert.find();
     res.json(alerts);
@@ -13,8 +13,8 @@ router.get('/api/alerts', async (req, res) => {
   }
 });
 
-
-router.post('/api/alerts', async (req, res) => {
+// Create a new alert
+router.post('/', async (req, res) => {
   try {
     const newAlert = new Alert(req.body);
     await newAlert.save();

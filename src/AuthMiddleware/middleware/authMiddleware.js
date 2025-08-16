@@ -1,36 +1,49 @@
 const jwt = require('jsonwebtoken');
 const User = require('../../models/User');
 
-// Protect routes
-exports.protect = async (req, res, next) => {
+// Authentication middleware
+const isAuthenticated = async (req, res, next) => {
   try {
     // Get token from header
     const token = req.header('Authorization')?.replace('Bearer ', '');
     
     if (!token) {
-      return res.status(401).json({ error: 'Not authorized, no token' });
+      return res.status(401).json({ 
+        success: false,
+        error: 'Authorization token required' 
+      });
     }
 
     // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     
-    // Get user from DB
-    const user = await User.findById(decoded.id);
+    // Find user and attach to request
+    const user = await User.findById(decoded.id).select('-password');
     if (!user) {
-      return res.status(401).json({ error: 'User not found' });
+      return res.status(401).json({ 
+        success: false,
+        error: 'User not found' 
+      });
     }
-
-    // Attach user to request
     req.user = user;
     next();
   } catch (err) {
-    res.status(401).json({ error: 'Not authorized' });
+    console.error('Authentication error:', err);
+    return res.status(401).json({ 
+      success: false,
+      error: 'Invalid or expired token' 
+    });
   }
 };
 
-// Generate JWT token
-exports.generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '30d'
+// Token generator
+const generateToken = (userId) => {
+  return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN || '7d'
   });
+};
+
+module.exports = {
+  isAuthenticated,
+  generateToken
 };

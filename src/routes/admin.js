@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Alert = require('../models/database');
-const { isAuthenticated } = require('../middleware/auth');
+const { isAuthenticated } = require('../AuthMiddleware/middleware/auth'); 
+
 
 
 // Edit Alert Form

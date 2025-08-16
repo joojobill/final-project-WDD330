@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+
+<h1>Your Watchlist</h1>
+<div class="watchlist-grid">
+  <% user.watchlist.forEach(movie => { %>
+    <div class="watchlist-item">
+      <img src="https://image.tmdb.org/t/p/w200<%= movie.posterPath %>">
+      <h3><%= movie.title %></h3>
+      <button class="remove-btn" data-movie-id="<%= movie.movieId %>">Remove</button>
+    </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>

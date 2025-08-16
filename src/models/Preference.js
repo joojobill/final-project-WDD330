@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');  
+
+
 const preferenceSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   genres: [String],
